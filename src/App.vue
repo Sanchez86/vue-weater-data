@@ -1,10 +1,8 @@
 <template>
-  <CurrentWeaterData v-bind:data="currentCity" />
+  <div class="app" v-bind:class="{open: Object.keys(dataCity).length > 0}">
+    <CurrentWeaterData v-bind:data="currentCity" />
 
-  <div class="d-flex">
-
-    <div class="left">
-      <h1>Weather data</h1>
+    <div class="inner">
       <AddCity v-on:add-city="addCity" />
 
       <CitiesList
@@ -12,9 +10,10 @@
               v-on:remove-city="removeCity"
               v-on:checked-city="checkedCity"
       />
-    </div>
-    <div class="right" v-if="Object.keys(dataCity).length > 0">
-      <WeaterData v-bind:dataCity="dataCity" />
+
+      <div class="detailed-data" v-bind:class="{active: Object.keys(dataCity).length > 0}">
+        <WeaterData v-bind:dataCity="dataCity" />
+      </div>
     </div>
 
   </div>
@@ -78,8 +77,16 @@ export default {
       localStorage.setItem('cities', JSON.stringify(this.cities));
     },
     addCity(newCity){
-      this.cities.push(newCity);
-      localStorage.setItem('cities', JSON.stringify(this.cities));
+      const result = getData(newCity.title);
+      result.then(async (res) => {
+        await res;
+        newCity.data = res;
+        this.cities.push(newCity);
+        localStorage.setItem('cities', JSON.stringify(this.cities));
+      });
+
+      console.log(cities);
+      console.log(JSON.parse(localStorage.getItem('cities') || []));
     },
     checkedCity(id){
       const checkedCity = this.cities.filter(item => item.id == id);
@@ -114,31 +121,49 @@ export default {
 </script>
 
 <style>
-  .d-flex{
-    display: flex;
+  body{
+    margin: 0;
   }
-  .left{
-    min-width: 400px;
-    max-width: 400px;
+  .inner{
+    min-width: 320px;
+    max-width: 320px;
+    position: relative;
+    padding-top: 55px;
+    height: calc(100vh - 55px);
+  }
+  .app{
+    min-width: 360px;
+    max-width: 360px;
+    height: calc(100vh - 30vh - 1px);
     width: 100%;
-    margin: 0 15px;
+    margin: auto;
+    padding: 0 10px 30vh 10px;
+    position: relative;
+    background-color: #4B4B4D;
+    overflow: hidden;
   }
-  .right{
-    width: 400px;
-    border-left:1px solid #333;
-    padding-left: 15px;
+  .detailed-data{
+    position: absolute;
+    bottom: -30vh;
+    left: 0;
+    right: 0;
+    height: 30vh;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 0 15px;
+    font-size: 14px;
+    transition: .5s;
   }
-  .right h2{
-    text-align: center;
+  .app.list{
+    max-height: 60vh;
   }
-#app {
-  padding-top: 25px;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  max-width: 800px;
-  margin: 15px auto;
-}
+  .detailed-data.active{
+    bottom: 0;
+  }
+
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 </style>

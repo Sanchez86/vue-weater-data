@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="weater-data">
         <h2>Weater data: <u>{{dataCity.name}}</u></h2>
 
         {{dataCity}}
@@ -18,5 +18,7 @@
 </script>
 
 <style scoped>
+    .weater-data{
 
+    }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <ul>
+    <ul class="list" v-bind:class="{active: test}">
         <CityListItem
             v-for="(city, i) of cities"
             v-bind:city="city"
@@ -11,7 +11,10 @@
 </template>
 
 <script>
-    import CityListItem from '@/components/CityListItem'
+    import CityListItem from '@/components/CityListItem';
+
+    let test = false;
+
     export default {
         props:['cities'],
         components: {
@@ -23,13 +26,32 @@
             },
             checkedCity(id){
                 this.$emit('checked-city', id);
+                test = true;
+                console.log('test',test);
             }
         }
     }
 </script>
 
 <style scoped>
-    ul{
+    .list{
         padding: 0;
+        max-height: 100vh;
+        overflow-y: scroll;
+    }
+    .list.active{
+        max-height: 60vh;
+    }
+    .list::-webkit-scrollbar {
+        width: 2px;
+        padding-left: 10px;
+    }
+
+    .list::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .list::-webkit-scrollbar-thumb {
+        background-color: #03a9f4;
     }
 </style>
