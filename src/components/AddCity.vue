@@ -17,19 +17,18 @@
 export default{
     data(){
         return {
-            title: ''
+            title: '',
+            isActive: false,
+            country: '',
+            region: ''
         }
     },
-    data:{
-        isActive: false
-    },
     methods: {
-        myFilter: function() {
-            this.isActive = !this.isActive;
-            console.log(this.isActive)
-        },
+        myFilter() {
+                this.isActive = !this.isActive;
+            },
         onSubmit() {
-
+            console.log('--', this.title, this.isActive);
             if(this.title){
                 const newCity = {
                     id: Date.now(),
@@ -41,11 +40,8 @@ export default{
                 this.title = ''
             }
         }
-    },
-    data: () => ({
-        country: '',
-        region: ''
-    })
+    }
+
 }
 </script>
 
@@ -53,8 +49,8 @@ export default{
     .add-location{
         position: absolute;
         top: 10px;
-        left: 10px;
-        right: 10px;
+        left: 0;
+        right: 0;
         height: 50px;
         overflow: hidden;
         z-index: 10;

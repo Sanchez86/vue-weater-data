@@ -38,9 +38,10 @@
         padding: 0;
         max-height: 100vh;
         overflow-y: scroll;
+        transition: .5s;
     }
-    .list.active{
-        max-height: 60vh;
+    .app.open .list{
+        max-height: 58vh;
     }
     .list::-webkit-scrollbar {
         width: 2px;

@@ -1,14 +1,27 @@
 <template>
-    <div class="current">
-        <span class="cityName">{{data.name}}</span>
-        <div class="item"></div>
-        <div class="item">{{data.description}}</div>
+    <div class="current"
+         v-bind:class="{active: isActive}">
+        <span class="cityName"
+              v-on:click="myFilter">{{data.name}}</span>
+       <!-- <div>Температура: {{(data.main.temp-273.15).toFixed(2)}}</div>
+        <div>Ветер: {{data.wind.speed}}</div>-->
+        {{(data)}}
     </div>
 </template>
 
 <script>
     export default {
         props:['data'],
+        data(){
+            return {
+                isActive: false
+            }
+        },
+        methods: {
+            myFilter: function () {
+                this.isActive = !this.isActive;
+            },
+        }
     }
 </script>
 
@@ -20,14 +33,15 @@
         transition: 1s;
         background-color: #333;
         color: #ddd;
-        display: flex;
-        flex-wrap: wrap;
-        padding: 5px 15px;
+        padding: 5px 0 5px 40px;
         margin: auto;
         width: 360px;
         height: 100vh;
         z-index: 100;
         right: 0;
+    }
+    .current.active{
+        left: 0;
     }
     .item{
         margin-right: 15px;

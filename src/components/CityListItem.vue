@@ -6,9 +6,7 @@
                        name="cityName"
                        v-on:change="city.display = !city.display; $emit('checked-city', city.id)"/>
                 <span class="temp-icon"></span>
-                <span>{{city.data.main.temp}}</span>
-
-                <strong>{{index+1}}</strong>
+                <span>{{(city.data.main.temp-273.15).toFixed(2)}} &nbsp;</span>
                 {{city.title}}
             </label>
         </span>
@@ -33,7 +31,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .item{
         display: flex;
         justify-content: space-between;
@@ -59,6 +57,7 @@
         justify-content: space-between;
         align-items: center;
         cursor:pointer;
+        color: #fff;
     }
     input{
         width: 10px;
@@ -79,33 +78,34 @@
         transition: .7s;
         width: 30px;
         height: 30px;
+
+        &:hover{
+            transform: rotateZ(90deg);
+        }
+
+        &:hover:before,
+        &:hover:after{
+            background-color: red;
+        }
+
+        &:before,
+        &:after{
+            content: "";
+            display: block;
+            top: 15px;
+            position: absolute;
+            width: 30px;
+            height: 1px;
+            background-color: #FFF;
+            transform-origin: top;
+            transition: .7s;
+        }
+        &:before{
+            transform: rotate(45deg);
+        }
+        &:after{
+            transform: rotate(-45deg);
+        }
     }
-    .delete:hover{
-        transform: rotateZ(90deg);
-    }
-    .delete:hover:before,
-    .delete:hover:after{
-        background-color: red;
-    }
-    .delete:before,
-    .delete:after{
-        content: "";
-        display: block;
-        top: 15px;
-        position: absolute;
-        width: 30px;
-        height: 1px;
-        background-color: #FFF;
-        transform-origin: top;
-        transition: .7s;
-    }
-    .delete:before{
-        transform: rotate(45deg);
-    }
-    .delete:after{
-        transform: rotate(-45deg);
-    }
-    .show{
-        /*text-decoration: line-through;*/
-    }
+
 </style>
