@@ -27,7 +27,6 @@
             checkedCity(id){
                 this.$emit('checked-city', id);
                 test = true;
-                console.log('test',test);
             }
         }
     }

@@ -1,4 +1,5 @@
 <template>
+  <button v-on:click="refreshCities()">Refresh data</button>
   <div class="app" v-bind:class="{open: Object.keys(dataCity).length > 0}">
     <CurrentWeaterData v-bind:data="currentCity" />
 
@@ -31,7 +32,11 @@ const _apiKey = 'b382e0b397c5ea35034ea0146ff99b78';
 let cities = [];
 
 try{
-  cities = JSON.parse(localStorage.getItem('cities') || []);
+  if(localStorage.getItem('cities') !== null){
+    cities = JSON.parse(localStorage.getItem('cities'));
+  }else{
+    cities = [];
+  }
 }
 catch(ex){
   console.error(ex);
@@ -84,15 +89,41 @@ export default {
         this.cities.push(newCity);
         localStorage.setItem('cities', JSON.stringify(this.cities));
       });
-
-      console.log(cities);
-      console.log(JSON.parse(localStorage.getItem('cities') || []));
     },
     checkedCity(id){
       const checkedCity = this.cities.filter(item => item.id == id);
 
       const result = getData(checkedCity[0].title);
       result.then(res => this.dataCity = res)
+    },
+    refreshCities(){
+
+      if(this.cities.length > 0){
+
+        localStorage.removeItem('cities');
+
+        let promises = [];
+
+        this.cities.forEach(city => {
+          promises.push(getData(city.title).then(cityResult => {
+            return {
+              ...city,
+              data: cityResult,
+            };
+          }));
+        });
+
+        Promise.all(promises).then(res => {
+          let tempArr = [];
+          res.forEach(city => {
+            tempArr.push(city);
+          });
+          this.cities = tempArr;
+          localStorage.setItem('cities', JSON.stringify(this.cities));
+        });
+
+      }
+
     }
   },
   mounted(){
@@ -115,6 +146,10 @@ export default {
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
+
+
+    //refresh data of cities
+    //this.refreshCities();
   }
 }
 

@@ -28,7 +28,6 @@ export default{
                 this.isActive = !this.isActive;
             },
         onSubmit() {
-            console.log('--', this.title, this.isActive);
             if(this.title){
                 const newCity = {
                     id: Date.now(),

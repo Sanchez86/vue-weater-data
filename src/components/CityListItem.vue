@@ -6,7 +6,7 @@
                        name="cityName"
                        v-on:change="city.display = !city.display; $emit('checked-city', city.id)"/>
                 <span class="temp-icon"></span>
-                <span>{{(city.data.main.temp-273.15).toFixed(2)}} &nbsp;</span>
+                <span>{{showData()}} °C &nbsp;</span>
                 {{city.title}}
             </label>
         </span>
@@ -26,6 +26,17 @@
             index:{
                type: Number,
                required: true
+            }
+        },
+        methods: {
+            showData(){
+                const result = (this.city.data.main.temp-273.15).toFixed(2);
+
+                if(result > 0){
+                    return `+ ${result}`;
+                }else{
+                    return `- ${result}`;
+                }
             }
         }
     }
