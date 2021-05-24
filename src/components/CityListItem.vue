@@ -1,25 +1,18 @@
 <template>
     <li class="item">
-        <span>
-            <label v-bind:class="{show: city.display}">
-                <input type="radio"
-                       name="cityName"
-                       v-on:change="city.display = !city.display; $emit('checked-city', city.id)"/>
+        <label v-bind:class="{show: city.display}">
+            <input type="radio"
+                   name="cityName"
+                   v-on:change="city.display = !city.display; $emit('checked-city', city.id)"/>
 
-                <div class="item-temp">
-                    <img class="weather-icon" :src="`http://openweathermap.org/img/wn/${city.data.weather[0].icon}@2x.png`" alt="icon" />
-                    <span>{{showData()}} °C</span>
-                </div>
-                <div>
-                    <div class="item-loc">
-                        {{city.title+', '+city.data.sys.country}}
-                    </div>
-                    <div class="item-desc">
-                        {{city.data.weather[0].description}}
-                    </div>
-                </div>
-            </label>
-        </span>
+            <div class="item__temp">
+                <img class="weather-icon" :src="`http://openweathermap.org/img/wn/${city.data.weather[0].icon}@2x.png`" alt="icon" />
+                <span>{{showData()}} °C</span>
+            </div>
+            <div class="item__loc">
+                {{city.title+', '+city.data.sys.country}}
+            </div>
+        </label>
         <div class="delete"
                 v-on:click="$emit('remove-city', city.id)">
         </div>
@@ -53,24 +46,6 @@
 </script>
 
 <style scoped lang="scss">
-    .item-temp{
-        width: 85px;
-        min-width: 85px;
-        display: flex;
-        flex-direction: column;
-        margin-left: 15px;
-        span{
-            position: relative;
-            top: -7px;
-        }
-    }
-    .weather-icon{
-        width: 45px;
-        height: 45px;
-    }
-    .d-none{
-        display: none;
-    }
     .item{
         display: flex;
         justify-content: space-between;
@@ -82,6 +57,32 @@
         border-radius: 5px;
         height: 40px;
         position: relative;
+        padding-right: 48px;
+        &__temp{
+            width: 85px;
+            min-width: 85px;
+            display: flex;
+            flex-direction: column;
+            margin-left: 15px;
+            span{
+                position: relative;
+                top: -7px;
+            }
+        }
+        &__loc{
+            font-size: 14px;
+            margin-left: 10px;
+            background-color: #3333334d;
+            border-radius: 5px;
+            padding: 5px 12px;
+        }
+    }
+    .weather-icon{
+        width: 45px;
+        height: 45px;
+    }
+    .d-none{
+        display: none;
     }
     .temp-icon{
         display: block;
@@ -93,10 +94,10 @@
     }
     label{
         display: flex;
-        justify-content: space-between;
         align-items: center;
         cursor:pointer;
         color: #fff;
+        width: 100%;
     }
     input{
         width: 10px;

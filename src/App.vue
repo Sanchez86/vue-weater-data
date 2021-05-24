@@ -163,7 +163,7 @@ export default {
 
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   .update{
     position: absolute;
     top: 10px;
@@ -210,6 +210,7 @@ export default {
 
   body{
     margin: 0;
+    font-family: 'Roboto', sans-serif;
   }
   .inner{
     min-width: 320px;
@@ -249,7 +250,7 @@ export default {
   }
 
   #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
