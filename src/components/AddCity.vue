@@ -44,18 +44,18 @@ export default{
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
     .add-location{
         position: absolute;
         top: 10px;
-        left: 0;
+        left: 55px;
         right: 0;
         height: 50px;
         overflow: hidden;
         z-index: 10;
         background-color: #808080;
         transition: 1s;
-        background-image: url("../assets/sky.jpg");
+        box-shadow: 0 0 10px #00000052;
     }
     .add-location:after{
         content: "";
@@ -69,6 +69,9 @@ export default{
     }
     .add-location.active{
         height: 340px;
+        .add{
+            background-color: #03A9F4;
+        }
     }
     .add{
         color: #FFF;
@@ -80,14 +83,16 @@ export default{
         width: 100%;
         height: 50px;
         cursor:pointer;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
         position: relative;
         z-index: 1;
+        transition: .5s;
     }
+
 
     form{
         width: 100%;
-        max-width: 300px;
+        max-width: 230px;
         margin-bottom: 15px;
         display: flex;
         flex-direction: column;
@@ -111,20 +116,18 @@ export default{
         background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjg0LjkyOXB4IiBoZWlnaHQ9IjI4NC45MjlweCIgdmlld0JveD0iMCAwIDI4NC45MjkgMjg0LjkyOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjg0LjkyOSAyODQuOTI5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PHBhdGggZD0iTTI4Mi4wODIsNzYuNTExbC0xNC4yNzQtMTQuMjczYy0xLjkwMi0xLjkwNi00LjA5My0yLjg1Ni02LjU3LTIuODU2Yy0yLjQ3MSwwLTQuNjYxLDAuOTUtNi41NjMsMi44NTZMMTQyLjQ2NiwxNzQuNDQxTDMwLjI2Miw2Mi4yNDFjLTEuOTAzLTEuOTA2LTQuMDkzLTIuODU2LTYuNTY3LTIuODU2Yy0yLjQ3NSwwLTQuNjY1LDAuOTUtNi41NjcsMi44NTZMMi44NTYsNzYuNTE1QzAuOTUsNzguNDE3LDAsODAuNjA3LDAsODMuMDgyYzAsMi40NzMsMC45NTMsNC42NjMsMi44NTYsNi41NjVsMTMzLjA0MywxMzMuMDQ2YzEuOTAyLDEuOTAzLDQuMDkzLDIuODU0LDYuNTY3LDIuODU0czQuNjYxLTAuOTUxLDYuNTYyLTIuODU0TDI4Mi4wODIsODkuNjQ3YzEuOTAyLTEuOTAzLDIuODQ3LTQuMDkzLDIuODQ3LTYuNTY1QzI4NC45MjksODAuNjA3LDI4My45ODQsNzguNDE3LDI4Mi4wODIsNzYuNTExeiIvPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48L3N2Zz4=);
     }
     .create{
-        height: 110px;
-        width: 110px;
+        height: 48px;
+        width: 100%;
         min-width: 60px;
         display: block;
         margin: 10px;
-        border-radius: 100%;
-        border: 0;
         background-color: transparent;
-        background-image: url("../assets/sunny.png");
-        background-size: contain;
-        background-repeat: no-repeat;
         cursor: pointer;
         opacity: 0.8;
         transition: .5s;
+        color: #fff;
+        font-size: 16px;
+        border: 1px solid #fff;
     }
     .create:hover{
         opacity: 1;

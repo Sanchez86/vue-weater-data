@@ -5,7 +5,6 @@
                 <input type="radio"
                        name="cityName"
                        v-on:change="city.display = !city.display; $emit('checked-city', city.id)"/>
-                <span class="temp-icon"></span>
                 <span>{{showData()}} °C &nbsp;</span>
                 {{city.title}}
             </label>
