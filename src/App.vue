@@ -239,7 +239,7 @@ export default {
     height: 30vh;
     overflow: hidden;
     background-color: #fff;
-    padding: 0 10px;
+    padding: 0;
     font-size: 14px;
     transition: .5s;
   }

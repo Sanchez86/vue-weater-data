@@ -1,9 +1,10 @@
 <template>
+    <h2><img class="weather-icon"
+             :src="`http://openweathermap.org/img/wn/${dataCity?.weather && dataCity?.weather[0]?.icon}@2x.png`"
+             alt="icon"
+    />{{dataCity.name}}</h2>
     <div class="weater-data">
-        <h2><img class="weather-icon"
-                 :src="`http://openweathermap.org/img/wn/${dataCity?.weather && dataCity?.weather[0]?.icon}@2x.png`"
-                 alt="icon"
-        />{{dataCity.name}}</h2>
+
         <h3>
             {{dataCity?.weather && dataCity?.weather[0]?.description}}
 
@@ -48,23 +49,24 @@
 </script>
 
 <style scoped lang="scss">
+    h2{
+        margin-top: 0;
+        margin-bottom: 0;
+        background-color: #03A9F4;
+        display: flex;
+        align-items: center;
+        color: #FFF;
+    }
+    img{
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+    }
     .weater-data{
-        h2{
-            margin-top: 10px;
-            margin-bottom: 0;
-            background-color: #03A9F4;
-            display: flex;
-            align-items: center;
-            color: #FFF;
-        }
+        padding: 0 10px;
         h3{
+            font-size: 16px;
+        }
 
-            font-size: 18px;
-        }
-        img{
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-        }
     }
 </style>

@@ -3,9 +3,8 @@
          v-bind:class="{active: isActive}">
         <span class="cityName"
               v-on:click="myFilter">{{data.name}}</span>
-       <!-- <div>Температура: {{(data.main.temp-273.15).toFixed(2)}}</div>
-        <div>Ветер: {{data.wind.speed}}</div>-->
-        {{(data)}}
+
+        <div class="temp"> {{showDataTemp()}}</div>
     </div>
 </template>
 
@@ -21,11 +20,26 @@
             myFilter: function () {
                 this.isActive = !this.isActive;
             },
+            showDataTemp(){
+                if(this.data.main){
+                    const result = (this.data.main.temp-273.15).toFixed(2);
+                    if(result > 0){
+                        return ` + ${result} °C`;
+                    }else{
+                        return ` ${result} °C`;
+                    }
+                }
+            },
         }
     }
 </script>
 
 <style scoped>
+    .temp{
+        text-align: center;
+        font-size: 42px;
+        color: orange;
+    }
     .current{
         position: absolute;
         top: 0;
