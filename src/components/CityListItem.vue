@@ -7,7 +7,7 @@
 
             <div class="item__temp">
                 <img class="weather-icon" :src="`http://openweathermap.org/img/wn/${city.data.weather[0].icon}@2x.png`" alt="icon" />
-                <span>{{showData()}} °C</span>
+                <span>{{showData()}}</span>
             </div>
             <div class="item__loc">
                 {{city.title+', '+city.data.sys.country}}
@@ -36,9 +36,9 @@
                 const result = (this.city.data.main.temp-273.15).toFixed(2);
 
                 if(result > 0){
-                    return `+ ${result}`;
+                    return `+ ${result} °C`;
                 }else{
-                    return `- ${result}`;
+                    return `${result} °C`;
                 }
             }
         }

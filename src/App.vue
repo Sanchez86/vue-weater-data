@@ -97,7 +97,9 @@ export default {
       const checkedCity = this.cities.filter(item => item.id == id);
 
       const result = getData(checkedCity[0].title);
-      result.then(res => this.dataCity = res)
+      result.then(async res => {
+        return this.dataCity = await res;
+      })
     },
     refreshCities(){
       this.isActive = true;
@@ -154,10 +156,6 @@ export default {
     }
 
     navigator.geolocation.getCurrentPosition(success, error, options);
-
-
-    //refresh data of cities
-    //this.refreshCities();
   }
 }
 
@@ -212,6 +210,9 @@ export default {
     margin: 0;
     font-family: 'Roboto', sans-serif;
   }
+  body,html{
+    height: 100vh;
+  }
   .inner{
     min-width: 320px;
     max-width: 320px;
@@ -238,7 +239,7 @@ export default {
     height: 30vh;
     overflow: hidden;
     background-color: #fff;
-    padding: 0 15px;
+    padding: 0 10px;
     font-size: 14px;
     transition: .5s;
   }
