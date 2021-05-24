@@ -5,8 +5,12 @@
                 <input type="radio"
                        name="cityName"
                        v-on:change="city.display = !city.display; $emit('checked-city', city.id)"/>
+
+                <img :src="`http://openweathermap.org/img/wn/${city.data.weather.icon}@2x.png`" alt="icon" />
+
                 <span>{{showData()}} °C &nbsp;</span>
-                {{city.title}}
+                {{city.title+', '+city.data.sys.country}}
+                {{city.data.weather.description}}
             </label>
         </span>
         <div class="delete"
@@ -42,6 +46,9 @@
 </script>
 
 <style scoped lang="scss">
+    .d-none{
+        display: none;
+    }
     .item{
         display: flex;
         justify-content: space-between;

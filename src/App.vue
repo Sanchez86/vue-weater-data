@@ -1,8 +1,8 @@
 <template>
-  <button class="update"
-          v-on:click="refreshCities()"
-          v-bind:class="{active: isActive}"></button>
   <div class="app" v-bind:class="{open: Object.keys(dataCity).length > 0}">
+    <button class="update"
+            v-on:click="refreshCities()"
+            v-bind:class="{active: isActive}"></button>
     <CurrentWeaterData v-bind:data="currentCity" />
 
     <div class="inner">
@@ -126,7 +126,7 @@ export default {
           localStorage.setItem('cities', JSON.stringify(this.cities));
           setTimeout(() => {
             this.isActive = false;
-          }, 1000)
+          }, 500)
 
         });
 
@@ -166,8 +166,8 @@ export default {
 <style scoped lang="scss">
   .update{
     position: absolute;
-    top: 18px;
-    left: 29px;
+    top: 10px;
+    left: 13px;
     border: 0;
     height: 50px;
     width: 42px;
