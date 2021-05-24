@@ -6,11 +6,18 @@
                        name="cityName"
                        v-on:change="city.display = !city.display; $emit('checked-city', city.id)"/>
 
-                <img :src="`http://openweathermap.org/img/wn/${city.data.weather.icon}@2x.png`" alt="icon" />
-
-                <span>{{showData()}} °C &nbsp;</span>
-                {{city.title+', '+city.data.sys.country}}
-                {{city.data.weather.description}}
+                <div class="item-temp">
+                    <img class="weather-icon" :src="`http://openweathermap.org/img/wn/${city.data.weather[0].icon}@2x.png`" alt="icon" />
+                    <span>{{showData()}} °C</span>
+                </div>
+                <div>
+                    <div class="item-loc">
+                        {{city.title+', '+city.data.sys.country}}
+                    </div>
+                    <div class="item-desc">
+                        {{city.data.weather[0].description}}
+                    </div>
+                </div>
             </label>
         </span>
         <div class="delete"
@@ -46,6 +53,21 @@
 </script>
 
 <style scoped lang="scss">
+    .item-temp{
+        width: 85px;
+        min-width: 85px;
+        display: flex;
+        flex-direction: column;
+        margin-left: 15px;
+        span{
+            position: relative;
+            top: -7px;
+        }
+    }
+    .weather-icon{
+        width: 45px;
+        height: 45px;
+    }
     .d-none{
         display: none;
     }
@@ -80,6 +102,9 @@
         width: 10px;
         height: 10px;
         margin-right: 10px;
+        position: absolute;
+        left: 0;
+        top: 5px;
     }
     strong{
         margin-right: 10px;
