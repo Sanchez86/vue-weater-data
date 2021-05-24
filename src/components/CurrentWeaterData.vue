@@ -47,10 +47,10 @@
         transition: 1s;
         background-color: #333;
         color: #ddd;
-        padding: 5px 0 5px 40px;
+        padding: 40px 40px 0 40px;
         margin: auto;
-        width: 360px;
-        height: 100vh;
+        width: 80%;
+        height: calc(100vh - 40px);
         z-index: 100;
         right: 0;
     }

@@ -1,8 +1,15 @@
 <template>
-    <h2><img class="weather-icon"
-             :src="`http://openweathermap.org/img/wn/${dataCity?.weather && dataCity?.weather[0]?.icon}@2x.png`"
+    <h2>
+
+        <img class="weather-icon"
+             v-if="dataCity?.weather"
+             :src="`http://openweathermap.org/img/wn/${dataCity?.weather[0]?.icon}@2x.png`"
              alt="icon"
-    />{{dataCity.name}}</h2>
+        />
+
+        {{dataCity.name}}
+
+    </h2>
     <div class="weater-data">
 
         <h3>
